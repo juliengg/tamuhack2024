@@ -34,10 +34,11 @@ export default function Body(){
 
 // Styles (You can use a CSS-in-JS library or import an external stylesheet)
 const mainStyle = {
-    marginTop: '75px',  // Adjusted margin top to account for the fixed header
+    marginTop: '0px',  // Adjusted margin top to account for the fixed header
     marginLeft: '242px',  // Adjusted margin left to account for the sidebar
     minHeight: '100vh', // Ensures the main content takes at least the full height of the viewport
     display: 'flex',
+    //position: 'fixed' ,
     flexDirection: 'column',
     padding: '20px',
   };
