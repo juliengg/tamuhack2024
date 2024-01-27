@@ -1,8 +1,9 @@
 import logo from "./logo.svg";
 import graph from "./graph.png";
 import './sidebar.css';
+import { useState } from "react";
 
-export default function Sidebar(){
+export default function Sidebar({currentPage, changeCurrentPage}){
     
     const imgStyle={
         height:"90px",
@@ -10,37 +11,37 @@ export default function Sidebar(){
     }
     return(
         <div className="sidebar">
-            <img src={logo} style={imgStyle} alt="" />
-            <Button1/>
-            <Button2/>
-            <Button3/>
+            <img src={logo} className="logo" alt="" onClick={() => changeCurrentPage("home")}/>
+            <Button1 active={currentPage === 'page1'} changeCurrentPage={changeCurrentPage}/>
+            <Button2 active={currentPage === 'page2'} changeCurrentPage={changeCurrentPage}/>
+            <Button3 active={currentPage === 'page3'} changeCurrentPage={changeCurrentPage}/>
 
         </div>
     )
 }
 
-function Button1(){
+function Button1({active, changeCurrentPage}){
 
     return(
-        <div className="button">
+        <div className={`button ${active ? 'active' : ''}`} onClick={() => changeCurrentPage("page1")}>
             <img src={graph} alt="" />
         </div>
     )
 }
 
-function Button2(){
+function Button2({active, changeCurrentPage}){
 
     return(
-        <div className="button">
+        <div className={`button ${active ? 'active' : ''}`} onClick={() => changeCurrentPage("page2")}>
             <img src={graph} alt="" />
         </div>
     )
 }
 
-function Button3(){
+function Button3({active, changeCurrentPage}){
 
     return(
-        <div className="button">
+        <div className={`button ${active ? 'active' : ''}`} onClick={() => changeCurrentPage("page3")}>
             <img src={graph} alt="" />
         </div>
     )
