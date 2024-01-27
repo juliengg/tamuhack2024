@@ -34,31 +34,31 @@ const Body = () => {
 
 // Styles (You can use a CSS-in-JS library or import an external stylesheet)
 const mainStyle = {
-  minHeight: '100vh', // Ensures the main content takes at least the full height of the viewport
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'left', // Center content vertically
-  alignItems: 'left', // Center content horizontally
-  padding: '20px',
-};
-
-const heroSectionStyle = {
-  textAlign: 'center', // Center text horizontally
-  padding: '40px', // Padding around the content
-  backgroundColor: '#f0f0f0', // Background color
-  marginBottom: '20px', // Added margin bottom for separation
-};
-
-const featuresSectionStyle = {
-  padding: '40px', // Padding around the content
-  backgroundColor: '#ffffff', // Background color
-  marginBottom: '20px', // Added margin bottom for separation
-};
-
-const callToActionStyle = {
-  textAlign: 'center', // Center text horizontally
-  padding: '40px', // Padding around the content
-  backgroundColor: '#f0f0f0', // Background color
-};
-
+    marginTop: '75px',  // Adjusted margin top to account for the fixed header
+    marginLeft: '242px',  // Adjusted margin left to account for the sidebar
+    minHeight: '100vh', // Ensures the main content takes at least the full height of the viewport
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '20px',
+  };
+  
+  const heroSectionStyle = {
+    textAlign: 'center',
+    padding: '40px',
+    backgroundColor: '#f0f0f0',
+    marginBottom: '20px',
+  };
+  
+  const featuresSectionStyle = {
+    padding: '40px',
+    backgroundColor: '#ffffff',
+    marginBottom: '20px',
+  };
+  
+  const callToActionStyle = {
+    textAlign: 'center',
+    padding: '40px',
+    backgroundColor: '#f0f0f0',
+  };
+  
 export default Body;
