@@ -1,5 +1,5 @@
 import './App.css';
-import Sidebar from "./components/sidebar"
+import Sidebar from "./components/sidebar/sidebar"
 import Header from './components/header';
 import Body from './components/body';
 

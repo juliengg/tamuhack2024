@@ -1,0 +1,32 @@
+.button {
+    width: 60%;
+    aspect-ratio: 1/1;
+    background: linear-gradient(#5D5C62, #4C4663);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 0 30px 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out; /* Add transition for smooth effect */
+  }
+  
+  .button:hover {
+    transform: scale(1.05); /* Increase the scale on hover */
+  }
+
+.sidebar {
+    min-width: 125px;
+    width: 15vw;
+    max-width: 150px;
+    height: 100vh;
+    background: linear-gradient(#363047, #1A1820);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    height: 40%
+}
