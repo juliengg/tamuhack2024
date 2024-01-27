@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <Sidebar/>
       <h1>
-        hi
+        higit 
       </h1>
     </div>
   );
