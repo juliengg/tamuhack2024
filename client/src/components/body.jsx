@@ -38,13 +38,14 @@ const mainStyle = {
     marginLeft: '242px',  // Adjusted margin left to account for the sidebar
     minHeight: '100vh', // Ensures the main content takes at least the full height of the viewport
     display: 'flex',
+    position: 'fixed' ,
     flexDirection: 'column',
     padding: '20px',
   };
   
   const heroSectionStyle = {
     textAlign: 'center',
-    padding: '40px',
+    padding: '40px',    
     backgroundColor: '#f0f0f0',
     marginBottom: '20px',
   };
