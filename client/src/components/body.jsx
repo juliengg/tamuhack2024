@@ -53,6 +53,7 @@ const mainStyle = {
     padding: '40px',
     backgroundColor: '#ffffff',
     marginBottom: '20px',
+    listStyleType: 'none',
   };
   
   const callToActionStyle = {
