@@ -5,9 +5,10 @@ const headerStyle = {
   color: 'black',          // Set your desired text color
   textAlign: 'left',
   position: 'fixed',       // Fixed position to keep it at the top
+  padding: '10px',
   width: '100%',           // Take up the full width of the screen
   top: 0,                   // Position at the top of the screen
-  marginLeft: '227px',   // Additional left margin for the title
+  marginLeft: '150px',   // Additional left margin for the title
   height: '75px',   // Set the height of the header
 };
 const titleStyle = {
