@@ -3,7 +3,6 @@ import React from 'react';
 const headerStyle = {
   backgroundColor: 'grey', // Set your desired background color
   color: 'black',          // Set your desired text color
-  padding: '10px',
   textAlign: 'left',
   position: 'fixed',       // Fixed position to keep it at the top
   width: '100%',           // Take up the full width of the screen
