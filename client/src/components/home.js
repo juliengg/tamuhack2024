@@ -48,7 +48,7 @@ export default function Home({changeCurrentPage, updateSavings}){
     }
 
     function handleClick(){
-        if (isNaN(savings) || savings < 1000){
+        if (isNaN(savings) || savings < 200){
             //show error dialogue
             setErrorMessage(true);
         }
@@ -73,7 +73,7 @@ export default function Home({changeCurrentPage, updateSavings}){
                 <p style={{margin:"20px 0"}}>To get started, enter your estimated annual income.</p>
                 <input type="text" style={textboxStyle} onChange={(e) => setSavings(e.target.value)}/>
                 <button style={buttonStyle} value={savings} onClick={() => handleClick()}>Get Started</button>
-                {errorMessage && (<p style={{color:"red"}}> Please enter a number above 1,000. </p>
+                {errorMessage && (<p style={{color:"red"}}> Please enter a number above 100. </p>
 )}
             </div>
         </div>

@@ -10,7 +10,7 @@ import InvestmentCalculator from './components/page2';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
-  const [savings, setSavings] = useState(0);
+  const [income, setIncome] = useState(0);
   const navigate = useNavigate();
   function changeCurrentPage(page) {
     console.log(page);
@@ -19,7 +19,7 @@ function App() {
   }
 
   function updateSavings(val) {
-    setSavings(val);
+    setIncome(val);
     console.log(val);
   }
 
@@ -32,9 +32,9 @@ function App() {
         <div className='routes-container'>
           <Routes>
             <Route path="home" element={ <Home changeCurrentPage={changeCurrentPage} updateSavings={updateSavings}/> } />
-            <Route path="page1" element={ <Page1/> } />
-            <Route path="page2" element={ <InvestmentCalculator/> } />
-            <Route path="page3" element={ <Page3/> } />
+            <Route path="page1" element={ <Page1 income={income}/> } />
+            <Route path="page2" element={ <InvestmentCalculator income={income}/> } />
+            <Route path="page3" element={ <Page3 income={income}/> } />
           </Routes>
         </div>
       </div>

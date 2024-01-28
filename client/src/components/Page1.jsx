@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InteractiveBudgetingToolPage = () => {
+const InteractiveBudgetingToolPage = ({income}) => {
   const [annualSalary, setAnnualSalary] = useState('');
   const [budgetInformation, setBudgetInformation] = useState(null);
   const [expenses, setExpenses] = useState([]);
@@ -10,6 +10,7 @@ const InteractiveBudgetingToolPage = () => {
   const [expenseAmountInput, setExpenseAmountInput] = useState('');
   const [goalInput, setGoalInput] = useState('');
   const [goalAmountInput, setGoalAmountInput] = useState('');
+  const [totalExpenses, setTotalExpenses] = useState(0);
 
   const handleSalaryChange = (e) => {
     setAnnualSalary(e.target.value);
@@ -40,6 +41,7 @@ const InteractiveBudgetingToolPage = () => {
       setExpenses([...expenses, expense]);
       setExpenseInput('');
       setExpenseAmountInput('');
+      setTotalExpenses(totalExpenses+parseFloat(expenseAmountInput));
     }
   };
 
@@ -66,26 +68,17 @@ const InteractiveBudgetingToolPage = () => {
 
   const mainStyle = {
     marginTop: '95px',
-    color: 'black',
     textAlign: 'left',
     position: 'fixed',
     padding: '20px',
     width: '80%',
     top: 0,
-    marginLeft: '150px',
+    marginLeft: '30px',
     height: '75px',
   };
 
-  const welcomeStyle = {
-    backgroundColor: '#e0f7fa',  // Light blue background color
-    padding: '20px',
-    marginBottom: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  };
-
   const formSectionStyle = {
-    backgroundColor: '#e0f7fa',  // Light blue background color
+    backgroundColor: '#393C45',  // Light blue background color
     padding: '20px',
     marginBottom: '20px',
     borderRadius: '8px',
@@ -93,7 +86,7 @@ const InteractiveBudgetingToolPage = () => {
   };
 
   const resultSectionStyle = {
-    backgroundColor: '#e0f7fa',  // Light blue background color
+    backgroundColor: '#393C45',  // Light blue background color
     padding: '20px',
     marginBottom: '20px',
     borderRadius: '8px',
@@ -101,7 +94,7 @@ const InteractiveBudgetingToolPage = () => {
   };
 
   const sectionStyle = {
-    backgroundColor: '#e0f7fa',  // Light blue background color
+    backgroundColor: '#393C45',  // Light blue background color
     padding: '20px',
     marginBottom: '20px',
     borderRadius: '8px',
@@ -112,30 +105,9 @@ const InteractiveBudgetingToolPage = () => {
 
   return (
     <div style={mainStyle}>
-      <div style={welcomeStyle}>
-        <h1>Welcome to Bloom!</h1>
-        <p>The Journey for your Financial Success</p>
-      </div>
-
-      <div style={formSectionStyle}>
-        <h2>Interactive Budgeting Tool</h2>
-        <label>
-          Enter Your Annual Salary:
-          <input type="number" value={annualSalary} onChange={handleSalaryChange} />
-        </label>
-        <button onClick={handleCalculateBudget}>Calculate Budget</button>
-      </div>
-
-      {budgetInformation && (
-        <div style={resultSectionStyle}>
-          <h3>Budget Information</h3>
-          <p>401K Budget: ${budgetInformation.fourk}</p>
-          <p>Investments Budget: ${budgetInformation.investing}</p>
-          <p>Savings Budget: ${budgetInformation.savings}</p>
-        </div>
-      )}
-
       {/* Expense Tracking Section */}
+
+      <h1 style={{fontWeight:"200",fontSize:"40px"}}>Estimated Monthly Income: ${income}</h1>
       <div style={sectionStyle}>
         <h2>Expense Tracking</h2>
         <label>
@@ -154,49 +126,21 @@ const InteractiveBudgetingToolPage = () => {
           />
           <button onClick={handleAddExpense}>Add Expense</button>
         </label>
-        <ul>
+        <ul style={{marginLeft:"20px"}}>
           {expenses.map((expense, index) => (
             <li key={index}>{expense.name}: ${expense.amount}</li>
           ))}
         </ul>
+        <p>Total Expenses: $ <span style={{color:"red"}}>{totalExpenses}</span></p>
       </div>
 
-      {/* Goal Setting Section */}
-      <div style={sectionStyle}>
-        <h2>Goal Setting</h2>
-        <label>
-          Set Goal:
-          <input
-            type="text"
-            placeholder="Expense Name"
-            value={goalInput}
-            onChange={(e) => setGoalInput(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Target Amount"
-            value={goalAmountInput}
-            onChange={(e) => setGoalAmountInput(e.target.value)}
-          />
-          <button onClick={handleSetGoal}>Set Goal</button>
-        </label>
-        <ul>
-          {goals.map((goal, index) => (
-            <li key={index}>{goal.name}: ${goal.targetAmount}</li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Budget Recommendations Section */}
-      <div style={sectionStyle}>
-        <h2>Budget Recommendations</h2>
-        <button onClick={handleGetBudgetRecommendations}>Get Recommendations</button>
-        <ul>
-          {recommendations.map((recommendation, index) => (
-            <li key={index}>{recommendation}</li>
-          ))}
-        </ul>
-      </div>
+      <h1 style={{fontWeight:"200",fontSize:"40px"}}>Remaining Monthly Savings: $ <span style={{color:"green"}}>{income-totalExpenses}</span></h1>
+        <div style={resultSectionStyle}>
+          <h3>Budget Information</h3>
+          <p>401K Budget: ${(0.04 * (income-totalExpenses)).toFixed(2)}</p>
+          <p>Investments Budget: ${(0.15 * (income-totalExpenses)).toFixed(2)}</p>
+          <p>Savings Budget: ${(0.1 * (income-totalExpenses)).toFixed(2)}</p>
+        </div>
     </div>
   );
 };
