@@ -1,9 +1,4 @@
-//take input of annual salary
-//invest 15% of income every year
-//generate a graph showing compund interest per year until 67 from current age
-//subtract retirement age from current age
-//average 10% per year return
-
+import { Line } from "react-chartjs-2";
 import React, { useState } from 'react';
 
 const pageStyle = {
