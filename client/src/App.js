@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Sidebar from "./components/sidebar/sidebar"
 import Header from './components/header';
 import Home from './components/home';
-import Page1 from './components/budgeting';
+import Page1 from './components/Page1';
 import Page3 from './components/aipage';
 import InvestmentCalculator from './components/page2';
 
