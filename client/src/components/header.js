@@ -1,19 +1,18 @@
 import React from 'react';
 
 const headerStyle = {
-  backgroundColor: 'grey', // Set your desired background color
-  color: 'black',          // Set your desired text color
   padding: '10px',
   textAlign: 'left',
-  position: 'fixed',       // Fixed position to keep it at the top
   width: '100%',           // Take up the full width of the screen
-  top: 0,                   // Position at the top of the screen
   marginLeft: '0',   // Additional left margin for the title
   height: '75px',   // Set the height of the header
+  letterSpacing: "5px",
+  
 };
 const titleStyle = {
     fontSize: '75px',  // Set the font size of the title text
-    marginTop:'-7px'
+    marginTop:'-7px',
+    fontWeight: "100"
 };
 
 const Header = () => {
