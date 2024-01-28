@@ -1,65 +1,207 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Body(){
+const InteractiveBudgetingToolPage = () => {
+  const [annualSalary, setAnnualSalary] = useState('');
+  const [budgetInformation, setBudgetInformation] = useState(null);
+  const [expenses, setExpenses] = useState([]);
+  const [goals, setGoals] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
+  const [expenseInput, setExpenseInput] = useState('');
+  const [expenseAmountInput, setExpenseAmountInput] = useState('');
+  const [goalInput, setGoalInput] = useState('');
+  const [goalAmountInput, setGoalAmountInput] = useState('');
+
+  const handleSalaryChange = (e) => {
+    setAnnualSalary(e.target.value);
+  };
+
+  const handleCalculateBudget = () => {
+    // Perform budget calculation logic here based on the provided annual salary
+    // For simplicity, let's assume a fixed percentage allocation to different categories
+
+    // Example: 4% for 401k, 15% for investing, 10% for savings, etc.
+    const fourKBudget = (0.04 * annualSalary).toFixed(2);
+    const investingBudget = (0.15 * annualSalary).toFixed(2);
+    const savingsBudget = (0.1 * annualSalary).toFixed(2);
+
+    const budgetInfo = {
+      fourk: fourKBudget,
+      investing: investingBudget,
+      savings: savingsBudget,
+      // Add more budget categories as needed
+    };
+
+    setBudgetInformation(budgetInfo);
+  };
+
+  const handleAddExpense = () => {
+    if (expenseInput && expenseAmountInput) {
+      const expense = { name: expenseInput, amount: parseFloat(expenseAmountInput) };
+      setExpenses([...expenses, expense]);
+      setExpenseInput('');
+      setExpenseAmountInput('');
+    }
+  };
+
+  const handleSetGoal = () => {
+    if (goalInput && goalAmountInput) {
+      const goal = { name: goalInput, targetAmount: parseFloat(goalAmountInput) };
+      setGoals([...goals, goal]);
+      setGoalInput('');
+      setGoalAmountInput('');
+    }
+  };
+
+  const handleGetBudgetRecommendations = () => {
+    // Implement logic to generate budget recommendations based on user's financial situation
+    // For simplicity, let's assume some basic recommendations
+    const recommendationsData = [
+      'Consider increasing your 401k contribution for better long-term savings.',
+      'Explore investment options with higher returns based on your risk tolerance.',
+      'Build an emergency fund equivalent to 3-6 months of living expenses.',
+    ];
+
+    setRecommendations(recommendationsData);
+  };
+
+  const mainStyle = {
+    marginTop: '95px',
+    color: 'black',
+    textAlign: 'left',
+    position: 'fixed',
+    padding: '20px',
+    width: '80%',
+    top: 0,
+    marginLeft: '150px',
+    height: '75px',
+  };
+
+  const welcomeStyle = {
+    backgroundColor: '#e0f7fa',  // Light blue background color
+    padding: '20px',
+    marginBottom: '20px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  };
+
+  const formSectionStyle = {
+    backgroundColor: '#e0f7fa',  // Light blue background color
+    padding: '20px',
+    marginBottom: '20px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  };
+
+  const resultSectionStyle = {
+    backgroundColor: '#e0f7fa',  // Light blue background color
+    padding: '20px',
+    marginBottom: '20px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  };
+
+  const sectionStyle = {
+    backgroundColor: '#e0f7fa',  // Light blue background color
+    padding: '20px',
+    marginBottom: '20px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    overflowY: 'auto',  // Enable vertical scrolling if content exceeds container height
+    maxHeight: '400px',  // Set a maximum height for the container
+  };
+
   return (
-    <main style={mainStyle}>
-      {/* Hero Section */}
-      <section style={heroSectionStyle}>
-        {/* Add your hero section content here */}
+    <div style={mainStyle}>
+      <div style={welcomeStyle}>
         <h1>Welcome to Bloom!</h1>
         <p>The Journey for your Financial Success</p>
-      </section>
+      </div>
 
-      {/* Features Section */}
-      <section style={featuresSectionStyle}>
-        {/* Add content for features section */}
-        <h2>Key Features</h2>
+      <div style={formSectionStyle}>
+        <h2>Interactive Budgeting Tool</h2>
+        <label>
+          Enter Your Annual Salary:
+          <input type="number" value={annualSalary} onChange={handleSalaryChange} />
+        </label>
+        <button onClick={handleCalculateBudget}>Calculate Budget</button>
+      </div>
+
+      {budgetInformation && (
+        <div style={resultSectionStyle}>
+          <h3>Budget Information</h3>
+          <p>401K Budget: ${budgetInformation.fourk}</p>
+          <p>Investments Budget: ${budgetInformation.investing}</p>
+          <p>Savings Budget: ${budgetInformation.savings}</p>
+        </div>
+      )}
+
+      {/* Expense Tracking Section */}
+      <div style={sectionStyle}>
+        <h2>Expense Tracking</h2>
+        <label>
+          Add Expense:
+          <input
+            type="text"
+            placeholder="Expense Name"
+            value={expenseInput}
+            onChange={(e) => setExpenseInput(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Amount"
+            value={expenseAmountInput}
+            onChange={(e) => setExpenseAmountInput(e.target.value)}
+          />
+          <button onClick={handleAddExpense}>Add Expense</button>
+        </label>
         <ul>
-          <li>Interactive Budgeting Tools</li>
-          <li>Financial Education Resources</li>
-          <li>AI</li>
-          {/* Add more features */}
+          {expenses.map((expense, index) => (
+            <li key={index}>{expense.name}: ${expense.amount}</li>
+          ))}
         </ul>
-      </section>
+      </div>
 
-      {/* Call to Action Section */}
-      <section style={callToActionStyle}>
-        {/* Call to action section */}
-        <h2>Learn More Today!</h2>
-        <button>Get Started</button>
-      </section>
-    </main>
+      {/* Goal Setting Section */}
+      <div style={sectionStyle}>
+        <h2>Goal Setting</h2>
+        <label>
+          Set Goal:
+          <input
+            type="text"
+            placeholder="Expense Name"
+            value={goalInput}
+            onChange={(e) => setGoalInput(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Target Amount"
+            value={goalAmountInput}
+            onChange={(e) => setGoalAmountInput(e.target.value)}
+          />
+          <button onClick={handleSetGoal}>Set Goal</button>
+        </label>
+        <ul>
+          {goals.map((goal, index) => (
+            <li key={index}>{goal.name}: ${goal.targetAmount}</li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Budget Recommendations Section */}
+      <div style={sectionStyle}>
+        <h2>Budget Recommendations</h2>
+        <button onClick={handleGetBudgetRecommendations}>Get Recommendations</button>
+        <ul>
+          {recommendations.map((recommendation, index) => (
+            <li key={index}>{recommendation}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 
-// Styles (You can use a CSS-in-JS library or import an external stylesheet)
-const mainStyle = {
-    marginTop: '0px',  // Adjusted margin top to account for the fixed header
-    marginLeft: '242px',  // Adjusted margin left to account for the sidebar
-    minHeight: '100vh', // Ensures the main content takes at least the full height of the viewport
-    display: 'flex',
-    //position: 'fixed' ,
-    flexDirection: 'column',
-    padding: '20px',
-  };
-  
-  const heroSectionStyle = {
-    textAlign: 'center',
-    padding: '40px',
-    backgroundColor: '#f0f0f0',
-    marginBottom: '20px',
-  };
-  
-  const featuresSectionStyle = {
-    padding: '40px',
-    backgroundColor: '#ffffff',
-    marginBottom: '20px',
-    listStyleType: 'none' ,
-  };
-  
-  const callToActionStyle = {
-    textAlign: 'center',
-    padding: '40px',
-    backgroundColor: '#f0f0f0',
-  };
-  
+export default InteractiveBudgetingToolPage;
+
+
+
