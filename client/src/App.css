@@ -9,7 +9,6 @@ body {
   font-family: 'Kanit';
   font-feature-settings: 'clig' off, 'liga' off;
   color: #EFEFEF;
-  font-weight: 20px;
 }
 
 
@@ -20,7 +19,6 @@ body {
 }
 .routes-container {
   width:100%;
-  height:100vh;
   overflow: hidden;
 }
 

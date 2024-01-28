@@ -1,17 +1,15 @@
 import React from 'react';
 
 const headerStyle = {
-  padding: '10px',
-  textAlign: 'left',
-  width: '100%',           // Take up the full width of the screen
+  textAlign: 'left',           // Take up the full width of the screen
   marginLeft: '0',   // Additional left margin for the title
   height: '75px',   // Set the height of the header
   letterSpacing: "5px",
   
 };
 const titleStyle = {
-    fontSize: '75px',  // Set the font size of the title text
-    marginTop: '10px',
+    fontSize: '55px',  // Set the font size of the title text
+    marginTop: '30px',
     marginLeft:"30px",
     fontWeight: "100"
 };

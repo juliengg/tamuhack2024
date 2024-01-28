@@ -10,9 +10,10 @@ export default function Sidebar({currentPage, changeCurrentPage}){
         height:"90px",
         margin: "50px 0 40px 0",
     }
+
     return(
         <div className="sidebar">
-            <img src={logo} className="logo" alt="" onClick={() => changeCurrentPage("home")}/>
+            <img src={logo} className={`logo ${currentPage === 'home' ? 'active' : ''}`} alt="" onClick={() => changeCurrentPage("home")}/>
             <Button1 active={currentPage === 'page1'} changeCurrentPage={changeCurrentPage}/>
             <Button2 active={currentPage === 'page2'} changeCurrentPage={changeCurrentPage}/>
             <Button3 active={currentPage === 'page3'} changeCurrentPage={changeCurrentPage}/>
@@ -25,7 +26,7 @@ function Button1({active, changeCurrentPage}){
 
     return(
         <div className={`button ${active ? 'active' : ''}`} onClick={() => changeCurrentPage("page1")}>
-            <img src={graph} alt="" />
+            <img src={budgeting} alt="" />
         </div>
     )
 }
@@ -34,7 +35,7 @@ function Button2({active, changeCurrentPage}){
 
     return(
         <div className={`button ${active ? 'active' : ''}`} onClick={() => changeCurrentPage("page2")}>
-            <img src={budgeting} alt="" />
+            <img src={graph} alt="" />
         </div>
     )
 }

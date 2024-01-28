@@ -33,10 +33,14 @@
 }
 
 .logo {
-    height:70px;
+    height:100px;
     margin: 50px 0 40px 0;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+}
+
+.logo.active {
+  transform: rotate(45deg);
 }
 
 .logo:hover {
