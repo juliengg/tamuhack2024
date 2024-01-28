@@ -70,7 +70,7 @@ export default function Home({changeCurrentPage, updateSavings}){
                     <li>Investment Visualizer</li>
                     <li>AI Powered Money Planner</li>
                 </ul>
-                <p style={{margin:"20px 0"}}>To get started, enter your estimated annual income.</p>
+                <p style={{margin:"20px 0"}}>To get started, enter your estimated monthly income.</p>
                 <input type="text" style={textboxStyle} onChange={(e) => setSavings(e.target.value)}/>
                 <button style={buttonStyle} value={savings} onClick={() => handleClick()}>Get Started</button>
                 {errorMessage && (<p style={{color:"red"}}> Please enter a number above 100. </p>
