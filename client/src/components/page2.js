@@ -24,7 +24,7 @@ const buttonStyle = {
 
 
 
-export default function InvestmentCalculator({investment}) {
+export default function InvestmentCalculator({investment, changeCurrentPage}) {
   const [investmentPercentage, setInvestmentPercentage] = useState(15);
   const [currentAge, setCurrentAge] = useState(null);
   const [data,setData] = useState(undefined);
@@ -63,7 +63,9 @@ export default function InvestmentCalculator({investment}) {
   };
   
   function handleClick() {
-
+      if (data){
+        changeCurrentPage("page3");
+      }
   }
 
 
@@ -79,7 +81,7 @@ export default function InvestmentCalculator({investment}) {
           onChange={(e) => setCurrentAge(e.target.value)}
         />
       </div>
-      <button style={buttonStyle} onClick={calculateCompoundInterest}>Generate</button>
+      <button style={buttonStyle} onClick={()=>calculateCompoundInterest()}>Generate</button>
       {data? 
         <div>
             <Line
@@ -100,7 +102,7 @@ export default function InvestmentCalculator({investment}) {
                 },
               },
             }}/>
-            <button style={buttonStyle} onClick={handleClick()}>Learn more</button>
+            <button style={buttonStyle} onClick={()=>handleClick()}>Learn more</button>
         </div>: <p></p>}
       
     </div>

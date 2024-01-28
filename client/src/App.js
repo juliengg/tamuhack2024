@@ -12,6 +12,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [income, setIncome] = useState(0);
   const [investment, setinvestment] = useState(0);
+  const [expenses, setExpenses] = useState([]);
   const navigate = useNavigate();
   function changeCurrentPage(page) {
     console.log(page);
@@ -28,6 +29,11 @@ function App() {
     setinvestment(val);
   }
 
+  function updateExpenses(expensesArray){
+    setExpenses(expensesArray);
+    console.log(expenses);
+  }
+
 
   return (
     <div className="App">
@@ -37,9 +43,9 @@ function App() {
         <div className='routes-container'>
           <Routes>
             <Route path="home" element={ <Home changeCurrentPage={changeCurrentPage} updateSavings={updateSavings}/> } />
-            <Route path="page1" element={ <Page1 income={income} changeCurrentPage={changeCurrentPage} updateInvestment={updateInvestment}/> } />
+            <Route path="page1" element={ <Page1 income={income} changeCurrentPage={changeCurrentPage} updateInvestment={updateInvestment} updateExpenses={updateExpenses}/> } />
             <Route path="page2" element={ <InvestmentCalculator investment={investment} changeCurrentPage={changeCurrentPage}/> } />
-            <Route path="page3" element={ <Page3 income={income}/> } />
+            <Route path="page3" element={ <Page3 income={income} expenses={expenses}/> } />
           </Routes>
         </div>
       </div>
