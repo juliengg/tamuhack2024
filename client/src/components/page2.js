@@ -6,6 +6,11 @@
 
 import React, { useState } from 'react';
 
+const pageStyle = {
+  margin: "95px 0 0 0",
+
+}
+
 const InvestmentCalculator = () => {
   const [annualSalary, setAnnualSalary] = useState('');
   const [investmentPercentage, setInvestmentPercentage] = useState(15);
@@ -44,7 +49,7 @@ const InvestmentCalculator = () => {
   };
 
   return (
-    <div>
+    <div style={pageStyle}>
       <h1>S&P 500 Investment Calculator</h1>
       <div>
         <label>Current Age:</label>
