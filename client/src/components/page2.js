@@ -1,4 +1,3 @@
-import { Line } from "react-chartjs-2";
 import React, { useState } from 'react';
 
 const pageStyle = {
