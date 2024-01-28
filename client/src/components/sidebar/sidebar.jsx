@@ -1,7 +1,8 @@
 import logo from "./logo.svg";
 import graph from "./graph.png";
+import budgeting from "./budgeting.png"
+import brain from "./brain.png"
 import './sidebar.css';
-import { useState } from "react";
 
 export default function Sidebar({currentPage, changeCurrentPage}){
     
@@ -33,7 +34,7 @@ function Button2({active, changeCurrentPage}){
 
     return(
         <div className={`button ${active ? 'active' : ''}`} onClick={() => changeCurrentPage("page2")}>
-            <img src={graph} alt="" />
+            <img src={budgeting} alt="" />
         </div>
     )
 }
@@ -42,7 +43,7 @@ function Button3({active, changeCurrentPage}){
 
     return(
         <div className={`button ${active ? 'active' : ''}`} onClick={() => changeCurrentPage("page3")}>
-            <img src={graph} alt="" />
+            <img src={brain} alt="" />
         </div>
     )
 }
