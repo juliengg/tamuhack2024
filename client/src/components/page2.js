@@ -1,55 +1,59 @@
-//take input of annual salary
-//invest 15% of income every year
-//generate a graph showing compund interest per year until 67 from current age
-//subtract retirement age from current age
-//average 10% per year return
 
+import { Line } from "react-chartjs-2";
+import { CategoryScale, Chart as ChartJS, LinearScale, PointElement, LineElement } from "chart.js";
 import React, { useState } from 'react';
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 const pageStyle = {
   margin: "95px 0 0 0",
 
 }
 
-const InvestmentCalculator = () => {
-  const [annualSalary, setAnnualSalary] = useState('');
+
+
+export default function InvestmentCalculator({income}) {
   const [investmentPercentage, setInvestmentPercentage] = useState(15);
   const [currentAge, setCurrentAge] = useState(null);
-  const [results, setResults] = useState([]);
-
+  const [data,setData] = useState(undefined);
+  const annualSalary = income*12;
+  const yearArray = [];
+  const equityArray = [];
   const calculateCompoundInterest = () => {
     const retirementAge = 67; // Adjust as needed
     const annualReturnRate = 0.10; // 10% return per year
     const yearlyContributionPercentage = 0.15; // 15% of annual salary as the initial contribution
   
     const yearlyContribution = Number(annualSalary) * (investmentPercentage / 100);
-    const initialContribution = Number(annualSalary) * yearlyContributionPercentage;
   
-    let principal = 0;
-    let totalAmount = 0;
-    const resultsArray = [];
-  
-    for (let age = currentAge; age <= retirementAge; age++) {
-      if (age === currentAge) {
-        principal += initialContribution; // Add the initial contribution only for the first year
-        totalAmount += initialContribution;
-      } else {
-        principal = (principal + initialContribution) * (1 + annualReturnRate); // Use initialContribution for the return for one year
-        totalAmount += yearlyContribution; // Increment totalAmount by the regular yearly contribution
-      }
-  
-      resultsArray.push({
-        age,
-        amount: principal.toFixed(2), // Keep two decimal places
-        totalAmount: totalAmount.toFixed(2),
-      });
+    let principal = annualSalary*yearlyContributionPercentage;
+    //let totalAmount = 0;
+    for (let age = +currentAge; age <= retirementAge; age++) {
+      yearArray.push(
+        String(age),
+      );
+      equityArray.push(
+        parseFloat(principal.toFixed(2)),
+      );
+      principal = principal*(1+annualReturnRate)+yearlyContribution;
     }
-  
-    setResults(resultsArray);
+    var data = {
+      labels: yearArray,
+      datasets: [{
+        label: `Coins Available`,
+        data: equityArray,
+        backgroundColor: "rgb(255, 99, 132)",
+        borderColor: "green",
+        borderWidth: 1
+      }]
+    };
+    setData(data);
   };
+  
+
+
 
   return (
-    <div style={pageStyle}>
+    <div>
       <h1>S&P 500 Investment Calculator</h1>
       <div>
         <label>Current Age:</label>
@@ -59,35 +63,15 @@ const InvestmentCalculator = () => {
           onChange={(e) => setCurrentAge(e.target.value)}
         />
       </div>
-      <div>
-        <label>Annual Salary:</label>
-        <input
-          type="number"
-          value={annualSalary}
-          onChange={(e) => setAnnualSalary(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Yearly Investment Percentage:</label>
-        <input
-          type="number"
-          value={investmentPercentage}
-          onChange={(e) => setInvestmentPercentage(e.target.value)}
-        />
-      </div>
       <button onClick={calculateCompoundInterest}>Generate</button>
-      <div>
-        <h2>Results:</h2>
-        <ul>
-            {results.map((result) => (
-            <li key={result.age}>
-                Age {result.age}: ${result.amount}
-            </li>
-            ))}
-        </ul>
-        </div>
+      {data? <Line
+        height={200} // set an appropriate height
+        width={400}
+        data={data}
+      />: <p>Waiting</p>}
+      
     </div>
   );
-};
+}
 
-export default InvestmentCalculator;
+    
