@@ -9,23 +9,35 @@ const pageStyle = {
 
 }
 
+const buttonStyle = {
+  width:"120px",
+  marginTop:"20px",
+  background:"#67BA72",
+  borderRadius:"5px",
+  border:"none",
+  fontFamily: "arial",
+  height:"30px",
+  cursor: "pointer",
+  fontWeight:"200"
+
+}
 
 
-export default function InvestmentCalculator({income}) {
+
+export default function InvestmentCalculator({investment}) {
   const [investmentPercentage, setInvestmentPercentage] = useState(15);
   const [currentAge, setCurrentAge] = useState(null);
   const [data,setData] = useState(undefined);
-  const annualSalary = income*12;
+  console.log("monthly investment:",investment)
+  const annualInvestment = investment*12;
   const yearArray = [];
   const equityArray = [];
   const calculateCompoundInterest = () => {
     const retirementAge = 67; // Adjust as needed
-    const annualReturnRate = 0.10; // 10% return per year
-    const yearlyContributionPercentage = 0.15; // 15% of annual salary as the initial contribution
+    const annualReturnRate = 0.10; // 10% return per year  
+    const yearlyContribution = annualInvestment;
   
-    const yearlyContribution = Number(annualSalary) * (investmentPercentage / 100);
-  
-    let principal = annualSalary*yearlyContributionPercentage;
+    let principal = yearlyContribution;
     //let totalAmount = 0;
     for (let age = +currentAge; age <= retirementAge; age++) {
       yearArray.push(
@@ -36,6 +48,7 @@ export default function InvestmentCalculator({income}) {
       );
       principal = principal*(1+annualReturnRate)+yearlyContribution;
     }
+    console.log(equityArray);
     var data = {
       labels: yearArray,
       datasets: [{
@@ -49,26 +62,46 @@ export default function InvestmentCalculator({income}) {
     setData(data);
   };
   
+  function handleClick() {
+
+  }
 
 
 
   return (
     <div>
       <h1>S&P 500 Investment Calculator</h1>
-      <div>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
         <label>Current Age:</label>
-        <input
+        <input style={{width:"100px"}}
           type="number"
           value={currentAge}
           onChange={(e) => setCurrentAge(e.target.value)}
         />
       </div>
-      <button onClick={calculateCompoundInterest}>Generate</button>
-      {data? <Line
-        height={200} // set an appropriate height
-        width={400}
-        data={data}
-      />: <p>Waiting</p>}
+      <button style={buttonStyle} onClick={calculateCompoundInterest}>Generate</button>
+      {data? 
+        <div>
+            <Line
+            height={150} // set an appropriate height
+            width={400}
+            data={data}
+            options={{
+              scales: {
+                x: {
+                  ticks: {
+                    color: '#C4C4C4', // Change the color of x-axis labels
+                  },
+                },
+                y: {
+                  ticks: {
+                    color: '#C4C4C4', // Change the color of y-axis labels
+                  },
+                },
+              },
+            }}/>
+            <button style={buttonStyle} onClick={handleClick()}>Learn more</button>
+        </div>: <p></p>}
       
     </div>
   );
