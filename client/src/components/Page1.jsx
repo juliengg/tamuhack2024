@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InteractiveBudgetingToolPage = ({income}) => {
+const InteractiveBudgetingToolPage = ({income, changeCurrentPage, updateInvestment}) => {
   const [annualSalary, setAnnualSalary] = useState('');
   const [budgetInformation, setBudgetInformation] = useState(null);
   const [expenses, setExpenses] = useState([]);
@@ -12,29 +12,6 @@ const InteractiveBudgetingToolPage = ({income}) => {
   const [goalAmountInput, setGoalAmountInput] = useState('');
   const [totalExpenses, setTotalExpenses] = useState(0);
 
-  const handleSalaryChange = (e) => {
-    setAnnualSalary(e.target.value);
-  };
-
-  const handleCalculateBudget = () => {
-    // Perform budget calculation logic here based on the provided annual salary
-    // For simplicity, let's assume a fixed percentage allocation to different categories
-
-    // Example: 4% for 401k, 15% for investing, 10% for savings, etc.
-    const fourKBudget = (0.04 * annualSalary).toFixed(2);
-    const investingBudget = (0.15 * annualSalary).toFixed(2);
-    const savingsBudget = (0.1 * annualSalary).toFixed(2);
-
-    const budgetInfo = {
-      fourk: fourKBudget,
-      investing: investingBudget,
-      savings: savingsBudget,
-      // Add more budget categories as needed
-    };
-
-    setBudgetInformation(budgetInfo);
-  };
-
   const handleAddExpense = () => {
     if (expenseInput && expenseAmountInput) {
       const expense = { name: expenseInput, amount: parseFloat(expenseAmountInput) };
@@ -45,26 +22,10 @@ const InteractiveBudgetingToolPage = ({income}) => {
     }
   };
 
-  const handleSetGoal = () => {
-    if (goalInput && goalAmountInput) {
-      const goal = { name: goalInput, targetAmount: parseFloat(goalAmountInput) };
-      setGoals([...goals, goal]);
-      setGoalInput('');
-      setGoalAmountInput('');
-    }
-  };
-
-  const handleGetBudgetRecommendations = () => {
-    // Implement logic to generate budget recommendations based on user's financial situation
-    // For simplicity, let's assume some basic recommendations
-    const recommendationsData = [
-      'Consider increasing your 401k contribution for better long-term savings.',
-      'Explore investment options with higher returns based on your risk tolerance.',
-      'Build an emergency fund equivalent to 3-6 months of living expenses.',
-    ];
-
-    setRecommendations(recommendationsData);
-  };
+  function handleClick(){
+    updateInvestment((0.15 * (income-totalExpenses)).toFixed(2));
+    changeCurrentPage("page2");
+  }
 
   const mainStyle = {
     marginTop: '95px',
@@ -76,6 +37,18 @@ const InteractiveBudgetingToolPage = ({income}) => {
     marginLeft: '30px',
     height: '75px',
   };
+
+  const buttonStyle = {
+    width:"150px",
+    marginTop:"20px",
+    background:"#67BA72",
+    borderRadius:"5px",
+    border:"none",
+    fontFamily: "arial",
+    cursor: "pointer",
+    fontWeight:"200"
+  
+  }
 
   const formSectionStyle = {
     backgroundColor: '#393C45',  // Light blue background color
@@ -141,6 +114,7 @@ const InteractiveBudgetingToolPage = ({income}) => {
           <p>Investments Budget: ${(0.15 * (income-totalExpenses)).toFixed(2)}</p>
           <p>Savings Budget: ${(0.1 * (income-totalExpenses)).toFixed(2)}</p>
         </div>
+        <button style={buttonStyle} onClick={()=>handleClick()}> Visualize Investment Potential</button>
     </div>
   );
 };
