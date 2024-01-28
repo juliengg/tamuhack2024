@@ -1,7 +1,7 @@
 .button {
     width: 60%;
     aspect-ratio: 1/1;
-    background: linear-gradient(#5D5C62, #4C4663);
+    background: linear-gradient(#3e3c45, #3f3b4d);
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -33,14 +33,14 @@
 }
 
 .logo {
-    height:90px;
+    height:70px;
     margin: 50px 0 40px 0;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
 }
 
 .logo:hover {
-  transform: scale(1.05); /* Increase the scale on hover */
+  transform: scale(1.2); /* Increase the scale on hover */
 }
 
 img {

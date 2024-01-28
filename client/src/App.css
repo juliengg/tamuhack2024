@@ -8,7 +8,7 @@
 body {
   font-family: 'Kanit';
   font-feature-settings: 'clig' off, 'liga' off;
-  color: white;
+  color: #EFEFEF;
   font-weight: 20px;
 }
 
@@ -26,5 +26,6 @@ body {
 
 .main-container {
   width:100%;
+  height: 100vh;
   background: linear-gradient(#313B4B, #51565D);
 }

@@ -11,7 +11,8 @@ const headerStyle = {
 };
 const titleStyle = {
     fontSize: '75px',  // Set the font size of the title text
-    marginTop:'-7px',
+    marginTop: '10px',
+    marginLeft:"30px",
     fontWeight: "100"
 };
 

@@ -4,9 +4,9 @@ import { useState } from 'react';
 import Sidebar from "./components/sidebar/sidebar"
 import Header from './components/header';
 import Home from './components/home';
-import Page1 from './components/budgeting';
-import Page2 from './components/investment';
+import Page1 from './components/Page1';
 import Page3 from './components/aipage';
+import InvestmentCalculator from './components/page2';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="home" element={ <Home/> } />
             <Route path="page1" element={ <Page1/> } />
-            <Route path="page2" element={ <Page2/> } />
+            <Route path="page2" element={ <InvestmentCalculator/> } />
             <Route path="page3" element={ <Page3/> } />
           </Routes>
         </div>
