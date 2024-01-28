@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InteractiveBudgetingToolPage = ({income, changeCurrentPage, updateInvestment}) => {
+const InteractiveBudgetingToolPage = ({income, changeCurrentPage, updateInvestment, updateExpenses}) => {
   const [annualSalary, setAnnualSalary] = useState('');
   const [expenses, setExpenses] = useState([]);
   const [totalExpenses, setTotalExpenses] = useState(0);
@@ -19,6 +19,7 @@ const InteractiveBudgetingToolPage = ({income, changeCurrentPage, updateInvestme
 
   function handleClick(){
     updateInvestment((0.15 * (income-totalExpenses)).toFixed(2));
+    updateExpenses(expenses);
     changeCurrentPage("page2");
   }
 

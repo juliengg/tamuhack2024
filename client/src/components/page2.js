@@ -24,7 +24,7 @@ const buttonStyle = {
 
 
 
-export default function InvestmentCalculator({investment}) {
+export default function InvestmentCalculator({investment, changeCurrentPage}) {
   const [investmentPercentage, setInvestmentPercentage] = useState(15);
   const [currentAge, setCurrentAge] = useState(null);
   const [data,setData] = useState(undefined);
@@ -63,7 +63,9 @@ export default function InvestmentCalculator({investment}) {
   };
   
   function handleClick() {
-
+      if (data){
+        changeCurrentPage("page3");
+      }
   }
 
 
